@@ -63,7 +63,7 @@ class CidadeController extends Controller
         array_push($aux, $novo);
         session(['cidades' => $aux]);
 
-        return redirect()->route('cidade.index');
+        return redirect()->route('cidades.index');
     }
 
     /**
@@ -114,7 +114,7 @@ class CidadeController extends Controller
         $aux[$indice] = $alterado;
         session(['cidades' => $aux]);
 
-        return redirect()->route('cidade.index');
+        return redirect()->route('cidades.index');
     }
 
     /**
@@ -131,6 +131,6 @@ class CidadeController extends Controller
         unset($aux[$indice]);
         session(['cidades' => $aux]);
 
-        return redirect()->route('cidade.index');
+        return redirect()->route('cidades.index');
     }
 }

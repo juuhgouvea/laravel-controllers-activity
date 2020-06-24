@@ -1,10 +1,19 @@
+{{-- @extends('default')
+
+@section('icon')
+    <h3>
+        <i class="fas fa-plus-square"></i>
+        Cadastrar
+    </h3>
+@endsection --}}
+
 <title>Sistema Gestão de Municípos - Governo do Paraná</title>
 <hr>
 <h1>Sistema Gestão de Municípos - Governo do Paraná</h2>
 <span>[ Alterar Dados da Cidade ]</span>
-<button><a href="{{ route('cidade.index')}}">Voltar</a></button>
+<button><a href="{{ route('cidades.index')}}">Voltar</a></button>
 <hr>
-<form action = "{{ route('cidade.update', $dados['id'])}}" method = "POST">
+<form action = "{{ route('cidades.update', $dados['id'])}}" method = "POST">
     @csrf
     @method('PUT')
     <div>

@@ -1,36 +1,39 @@
-<title>Sistema Gestão de Municípos - Governo do Paraná</title>
-<hr>
-<h1>Sistema Gestão de Municípos - Governo do Paraná</h2>
-<p>[ Menu Principal ]</p>
-<hr>
-<button><a href="{{ route('cidade.create')}}">Cadastrar Cidade</a></button>
-<hr>
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>CIDADE</th>
-            <th>PORTE</th>
-            <th>EDITAR</th>
-            <th>REMOVER</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($cidades as $item)
-            <tr>
-                <td>{{ $item['id'] }}</td>
-                <td>{{ $item['cidade'] }}</td>
-                <td>{{ $item['porte'] }}</td>
-                <td><button><a href="{{ route('cidade.edit', $item['id'])}}">Editar</a></button></td>
-                <form action="{{ route('cidade.destroy', $item['id']) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <td>
-                        <button type="submit">Remover</button>
-                    </td>
-                </form>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+@extends('default')
+
+@section('icon')
+    <h3>
+        <i class="fas fa-list"></i>
+        Cidades
+    </h3>
+@endsection
+
+
+@section('content')
+        <div>
+            <button class="btn btn-lg btn-primary w-100"><a class="text-white" href="{{ route('cidades.create')}}">Cadastrar nova cidade</a></button>
+        </div>
+        <table class="mt-5 table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">CIDADE</th>
+                    <th class="text-center" scope="col">EVENTO</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($cidades as $item)
+                    <tr>
+                       <td class="text-center">{{ $item['cidade'] }}</td>
+                        <td class="text-center d-flex align-items-center justify-content-center">
+                            <a class="btn" href="{{ route('cidades.show', $item['id']) }}"><i class="fas fa-info-circle"></i></a>
+                            <a class="btn" href="{{ route('cidades.edit', $item['id'])}}"><i class="fas fa-pen"></i></a>
+                            <form action="{{ route('cidades.destroy', $item['id']) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <a class="btn" type="submit"><i class="fas fa-trash"></i></a>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+@endsection
