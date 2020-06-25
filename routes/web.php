@@ -13,9 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('default');
-});
-
-// Route::redirect('/', '/cidades', 301);
+Route::redirect('/', '/cidades', 301);
 Route::resource('cidades', 'CidadeController');
