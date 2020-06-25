@@ -74,7 +74,13 @@ class CidadeController extends Controller
      */
     public function show($id)
     {
-        //
+        $aux = session('cidades');
+        $indice = array_search($id, array_column($aux, 'id'));
+        if($indice === false) return view('404');
+        $chave = array_keys($aux)[$indice];
+        $cidade = $aux[$chave];
+
+        return view('cidades.show')->with('cidade', $cidade);
     }
 
     /**
@@ -88,7 +94,8 @@ class CidadeController extends Controller
         $aux = session('cidades');
         $indice = array_search($id, array_column($aux, 'id'));
         if($indice === false) return view('404');
-        $dados = $aux[$indice];
+        $chave = array_keys($aux)[$indice];
+        $dados = $aux[$chave];
 
         return view('cidades.edit', compact('dados'));
     }
@@ -110,8 +117,9 @@ class CidadeController extends Controller
 
         $aux = session('cidades');
         $indice = array_search($id, array_column($aux, 'id'));
+        $chave = array_keys($aux)[$indice];
 
-        $aux[$indice] = $alterado;
+        $aux[$chave] = $alterado;
         session(['cidades' => $aux]);
 
         return redirect()->route('cidades.index');
@@ -127,9 +135,11 @@ class CidadeController extends Controller
     {
         $aux = session('cidades');
         $indice = array_search($id, array_column($aux, 'id'));
+        $chave = array_keys($aux)[$indice];
 
-        unset($aux[$indice]);
+        unset($aux[$chave]);
         session(['cidades' => $aux]);
+
 
         return redirect()->route('cidades.index');
     }

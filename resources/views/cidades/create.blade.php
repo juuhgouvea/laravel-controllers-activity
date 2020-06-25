@@ -1,11 +1,4 @@
-@extends('default')
-
-@section('icon')
-    <h3>
-        <i class="fas fa-plus-square"></i>
-        Cadastrar
-    </h3>
-@endsection
+@extends('default', ['titulo' => 'Cadastrar', 'iconClass' => 'fas fa-plus-square'])
 
 @section('content')
     <form action="{{ route('cidades.store')}}" method="POST">
@@ -15,7 +8,7 @@
                 <button type="submit" class="btn btn-primary btn-lg w-100">Confirmar / Cadastrar</button>
             </div>
             <div class="col-sm-4">
-                <button class="btn btn-warning btn-lg w-100 font-weight-bold">Voltar</button>
+                <a  href="{{ route('cidades.index') }}" class="btn btn-warning btn-lg w-100 font-weight-bold">Voltar</a>
             </div>
         </div>
         <div class="row mt-5">
